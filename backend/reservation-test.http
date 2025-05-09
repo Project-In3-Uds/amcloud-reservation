@@ -1,7 +1,7 @@
 ### Créer une réservation
 POST http://localhost:8083/api/reservations
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0NTg3MDUxNywiZXhwIjoxNzQ1ODc0MTE3fQ._vozdIlc7oxzS57uSzHeSGWdbnCX2dlgsOzJCLl3HmY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Njc1ODQ0MCwiZXhwIjoxNzQ2NzYyMDQwfQ.UjiENMp2SAKpw2f-7_40_aSnO3IGBEHqkvvx2AM0RjE
 
 {
   "travelerName": "Charlie",
@@ -14,4 +14,4 @@ GET http://localhost:8083/api/reservations
 
 ### Appeler Reservation sécurisé
 GET http://localhost:8083/api/reservations
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0NTgzNzk5NSwiZXhwIjoxNzQ1ODQxNTk1fQ.v_PyMgITbVLJ8YykIaBVMM8vOM3IWXYjGdPSGrypZwQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Njc1ODQ0MCwiZXhwIjoxNzQ2NzYyMDQwfQ.UjiENMp2SAKpw2f-7_40_aSnO3IGBEHqkvvx2AM0RjE
