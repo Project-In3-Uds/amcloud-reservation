@@ -32,3 +32,14 @@ build/
 ### VS Code ###
 .vscode/
 .env
+# ...existing code...
+
+# Node.js & Frontend
+node_modules/
+frontend/amcloud-reservation-frontend/node_modules/
+frontend/amcloud-reservation-frontend/.next/
+frontend/amcloud-reservation-frontend/package-lock.json
+
+# Mac/Linux/Windows system files
+.DS_Store
+Thumbs.db

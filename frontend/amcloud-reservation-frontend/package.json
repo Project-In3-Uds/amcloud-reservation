@@ -1,0 +1,23 @@
+{
+  "name": "amcloud-reservation-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.5",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "^5.8.3"
+  }
+}
