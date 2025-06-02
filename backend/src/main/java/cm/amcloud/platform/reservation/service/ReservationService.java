@@ -1,5 +1,6 @@
 package cm.amcloud.platform.reservation.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class ReservationService {
         reservation.setTravelerName(reservationDTO.getTravelerName());
         reservation.setDestination(reservationDTO.getDestination());
         reservation.setAgencyName(reservationDTO.getAgencyName());
+        reservation.setDepart(reservationDTO.getDepart());
+        reservation.setHeureDepart(reservationDTO.getHeureDepart());
+        reservation.setClasse(reservationDTO.getClasse());
         return reservationRepository.save(reservation);
     }
 

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Header from '../components/Header';
+import Carousel from '../components/Carousel';
 import ReservationForm from '../components/ReservationForm';
 import axios from 'axios';
 
@@ -9,6 +11,9 @@ interface Reservation {
     traveleName: string;
     destination: string;
     agencyName: string;
+ depart: string ;
+    heureDepart: Date ;
+    classe: string;
 }
 
 const ReservationsPage: React.FC = () => {
@@ -18,7 +23,7 @@ const ReservationsPage: React.FC = () => {
         try {
             const response = await axios.get('http://localhost:8083/api/reservations', {
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODA4MjA3OCwiZXhwIjoxNzQ4MTE4MDc4fQ.t35nGPccDvZ6dAUZ3ZLdGAmTZtXiuyLVBrPiPQ45iHGbOVRLF1NdEhkxL0e6bdZBfXZ9V9BFkIjO_ojMema0ZDJgokBXKqCZDsmOWVvH1CJQ2TYu3j03FnROOqiG24f8YPfTcRTARHPHf4x3Qa4lJyOGvyL6N_cyr_NxVoBlsbpTTt-_ZONCv2ObCCUjeHz0XwNH10K6BLa7zrHpaOHjKn3_TCV_zAnX0E6pI4n5Ee59OaXQjpcOl_CgtcGL6iVu7AToQgTNvzZHFScz7ljpN8lre5KvELOIlh1RYUGvAkHKf75l4KVvZZBJwkYAPzpZyJCJoBe2O_8EATtN2xiYmw', 
+                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODg4MDkzNiwiZXhwIjoxNzQ4OTE2OTM2fQ.GpWjTCNZHbBS_lXQCxR_-gYRLXC_iCQUUTMFivam6V4Ir0zai-JXG_7Mg3M2YBaocLmIoi8OuUJWXWMzrDAJBLFvBcNWJXB9lTveb-v2xaR6B-wiFoaJbUDMY5K2ARUnrgAIl1HDUpMih5WdzYEn3JyuxFVwnt96uqLxFkZypwJoVvbWhxDQJza3XAhnGJikAmHjHlK6Fa1P_wR_Gpd34VUoX9kJlqpslh9ktw70x3B1z6vS97iYzb2pFKyeVuap8DhUK_jG-EeJenGq73Q0-GuCX38hfdpyTBgeNLshFVqhbjIpLF6wROnuDBpxXvE1IJ_UKYxMyUyqGRKwcrqGNg', 
  }
             });
             setReservations(response.data);
@@ -31,18 +36,10 @@ const ReservationsPage: React.FC = () => {
         fetchReservations();
     }, []);
 
-    // const fetchReservations = async () => {
-    //     const res = await fetch('http://localhost:8083/api/reservations');
-    //     const data = await res.json();
-    //     setReservations(data);
-    // };
-
-    // useEffect(() => {
-    //     fetchReservations();
-    // }, []);
-
     return (
+      
         <div>
+            <Header />
             <h1>Reservations</h1>
             <ReservationForm onReservationCreated={fetchReservations} />
            

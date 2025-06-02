@@ -6,12 +6,18 @@ CREATE TABLE reservation (
     id BIGSERIAL PRIMARY KEY,
     traveler_name VARCHAR(255),
     destination VARCHAR(255),
-    agency_name VARCHAR(255)
+    agency_name VARCHAR(255),
+    depart VARCHAR(255),
+    heure_depart TIMESTAMP,
+    classe VARCHAR(20)
 );
 CREATE TABLE reservation_history (
     id BIGSERIAL PRIMARY KEY,
     traveler_name VARCHAR(255),
     destination VARCHAR(255),
     agency_name VARCHAR(255),
+    depart VARCHAR(255),
+    heure_depart TIMESTAMP,
+    classe VARCHAR(20),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

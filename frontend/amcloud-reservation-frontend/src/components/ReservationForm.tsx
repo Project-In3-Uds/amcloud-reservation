@@ -1,109 +1,185 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Dashbord from './Dashbord';
+import styles from './ReservationForm.module.css';
 
 interface ReservationFormProps {
     onReservationCreated?: () => void;
 }
 
+
+function getCurrentHeureDepart() {
+    const now = new Date();
+    // Format ISO 8601 : yyyy-MM-ddTHH:mm:ss
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hour = String(now.getHours()).padStart(2, '0');
+    const minute = String(now.getMinutes()).padStart(2, '0');
+    const second = String(now.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+}
 const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated }) => {
     const [travelerName, setTravelerName] = useState('');
     const [destination, setDestination] = useState('');
     const [agencyName, setAgencyName] = useState('');
+    const [depart, setDepart] = useState('');
+    const [classe, setClasse] = useState('');
     const [message, setMessage] = useState<string | null>(null);
+
+    const resetForm = () => {
+        setTravelerName('');
+        setDestination('');
+        setAgencyName('');
+        setDepart('');
+        setClasse('');
+    };
+    const cameroonCities = [
+        'Yaoundé', 'Douala', 'Garoua', 'Bamenda', 'Maroua', 'Bafoussam',
+        'Nkongsamba', 'Ebolowa', 'Bertoua', 'Ngaoundéré', 'Dschang',
+        'Limbe', 'Kribi', 'Buea', 'Foumban'
+    ];
+    const agencies = [
+        "Garanti Express", "Finexs Voyages", "General Express", "Touristique Express", "Buca Voyages",
+        "Amour Mezam", "Binam Voyages", "Transcam Voyages", "Musango Voyages", "United Express",
+        "Avenir Voyages", "Mondial Express", "Sanaga Voyages", "Trésor Voyages"
+    ];
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setMessage(null);
+        const heureDepart = getCurrentHeureDepart();
+        console.log({
+            travelerName,
+            destination,
+            agencyName,
+            depart,
+            heureDepart: getCurrentHeureDepart(),
+            classe,
+        });
         try {
             const response = await axios.post('http://localhost:8083/api/reservations', {
                 travelerName,
                 destination,
                 agencyName,
+                depart,
+                heureDepart,
+                classe,
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-
-                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODA4MjA3OCwiZXhwIjoxNzQ4MTE4MDc4fQ.t35nGPccDvZ6dAUZ3ZLdGAmTZtXiuyLVBrPiPQ45iHGbOVRLF1NdEhkxL0e6bdZBfXZ9V9BFkIjO_ojMema0ZDJgokBXKqCZDsmOWVvH1CJQ2TYu3j03FnROOqiG24f8YPfTcRTARHPHf4x3Qa4lJyOGvyL6N_cyr_NxVoBlsbpTTt-_ZONCv2ObCCUjeHz0XwNH10K6BLa7zrHpaOHjKn3_TCV_zAnX0E6pI4n5Ee59OaXQjpcOl_CgtcGL6iVu7AToQgTNvzZHFScz7ljpN8lre5KvELOIlh1RYUGvAkHKf75l4KVvZZBJwkYAPzpZyJCJoBe2O_8EATtN2xiYmw',
+                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODg4MDkzNiwiZXhwIjoxNzQ4OTE2OTM2fQ.GpWjTCNZHbBS_lXQCxR_-gYRLXC_iCQUUTMFivam6V4Ir0zai-JXG_7Mg3M2YBaocLmIoi8OuUJWXWMzrDAJBLFvBcNWJXB9lTveb-v2xaR6B-wiFoaJbUDMY5K2ARUnrgAIl1HDUpMih5WdzYEn3JyuxFVwnt96uqLxFkZypwJoVvbWhxDQJza3XAhnGJikAmHjHlK6Fa1P_wR_Gpd34VUoX9kJlqpslh9ktw70x3B1z6vS97iYzb2pFKyeVuap8DhUK_jG-EeJenGq73Q0-GuCX38hfdpyTBgeNLshFVqhbjIpLF6wROnuDBpxXvE1IJ_UKYxMyUyqGRKwcrqGNg'
                 },
             });
-
-            if (response.status === 201) {
-                setMessage('Réservation créée avec succès !');
-                setTravelerName('');
-                setDestination('');
-                setAgencyName('');
-                if (onReservationCreated) onReservationCreated()
-                    { setMessage('Réservation créée avec succès !'); }; 
+            setMessage('Réservation créée avec succès !');
+            resetForm();
+            if (onReservationCreated) onReservationCreated();
+        } catch (error: any) {
+            console.log(error);
+            if (error.response) {
+                setMessage('Erreur : ' + (error.response.data?.message || 'Impossible de créer la réservation.'));
             } else {
-                setMessage('Erreur : Impossible de créer la réservation.');
+                setMessage('Erreur de connexion au serveur.');
             }
-        } catch (error) {
-            setMessage('Erreur de connexion au serveur.');
         }
     };
 
-    //     try {
-    //         const response = await fetch('http://localhost:8083/api/reservations', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                  'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODAxNDM0NCwiZXhwIjoxNzQ4MDE3OTQ0fQ.KnUqQ307jovJS-AkAXkCKHl2Na1QWdW0jQ_9uiV7LXrvA5DlC6PdrJaBoil67kUoHiifYGFfzDDfgD4jSyaeJcAFTgN5kj0ptrr-52z22hVvFZQ71c_CYcWaNhUVDPB5EoFub__9HGZJgooCNMa8x1x0PcOzfw8OpFMWBOb5rIX8W-Lw3BWO1D8bjRVAeBATlQorio_-sbrS0r0mgeXN1O74PtFXC7qsaE1voQwwCuzpch1N7a1VwhlGAHYJnTDwcsSlxMsf6FeBjs44umDFO00hk4gWvjE9VEfhkIaZruVWAP2K2IqwKNayENYdxPRgBzmNLoGYibEZi7h894WoBA',
-    //             },
-    //             body: JSON.stringify({
-    //                 travelerName,
-    //                 destination,
-    //                 agencyName,
-    //             }),
-    //         });
-
-    //         if (response.ok) {
-    //             setMessage('Réservation créée avec succès !');
-    //             setTravelerName('');
-    //             setDestination('');
-    //             setAgencyName('');
-    //             if (onReservationCreated) onReservationCreated(); 
-    //         } else {
-    //             const errorData = await response.json();
-    //             setMessage('Erreur : ' + (errorData.message || 'Impossible de créer la réservation.'));
-    //         }
-    //     } catch (error) {
-    //         setMessage('Erreur de connexion au serveur.');
-    //     }
-    // };
+    const handleReset = () => {
+        resetForm();
+        setMessage(null);
+    };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Créer une réservation</h2>
-            <div>
-                <label>Voyageur :</label>
-                <input
-                    type="text"
-                    value={travelerName}
-                    onChange={e => setTravelerName(e.target.value)}
-                    required
-                />
+        <div className={styles.centerContainer}>
+            <Dashbord />
+            <div className={styles.formWrapper}>
+                <form onSubmit={handleSubmit} onReset={handleReset} className={styles.formBox}>
+                    <h2>Créer une réservation</h2>
+                    <p>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder='Entrez votre nom'
+                                value={travelerName}
+                                onChange={e => setTravelerName(e.target.value)}
+                                required
+                            />
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+                            <select
+                                value={agencyName}
+                                onChange={e => setAgencyName(e.target.value)}
+                                required
+                            >
+                                <option value="">Agence</option>
+                                {agencies.map(agency => (
+                                    <option key={agency} value={agency}>{agency}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+
+                            <select
+                                value={destination}
+                                onChange={e => setDestination(e.target.value)}
+                                required
+                            >
+                                <option value="">Destination</option>
+                                {cameroonCities.map(city => (
+                                    <option key={city} value={city}>{city}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+
+                            <select
+                                value={depart}
+                                onChange={e => setDepart(e.target.value)}
+                                required
+                            >
+                                <option value="">Depart</option>
+                                {cameroonCities.map(city => (
+                                    <option key={city} value={city}>{city}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder='Heure de départ'
+                                value={getCurrentHeureDepart()}
+                                disabled
+                            />
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+                            <select
+
+                                value={classe}
+                                onChange={e => setClasse(e.target.value)}
+                                required
+                            >
+                                <option value="">CLASSIQUE</option>
+                                <option value="VIP">VIP</option>
+                                <option value="CLASSIQUE">CLASSIQUE</option>
+                            </select>
+                        </div>
+                    </p>
+                    <button type="submit" id="boutton1">CREER</button>
+                    <button type="reset" id="boutton2" style={{ marginLeft: 10 }}>Annuler</button>
+                    {message && <p>{message}</p>}
+                </form>
             </div>
-            <div>
-                <label>Destination :</label>
-                <input
-                    type="text"
-                    value={destination}
-                    onChange={e => setDestination(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <label>Agence :</label>
-                <input
-                    type="text"
-                    value={agencyName}
-                    onChange={e => setAgencyName(e.target.value)}
-                    required
-                />
-            </div>
-            <button type="submit">Créer</button>
-            {message && <p>{message}</p>}
-        </form>
+        </div>
     );
 };
 
