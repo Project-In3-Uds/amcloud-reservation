@@ -1,32 +1,22 @@
-
-
+/* Ajoute ou adapte ces styles dans ReservationForm.module.css */
 .centerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #f8faff;
+  background: linear-gradient(135deg, #e0f2fe 0%, #b6e0fe 100%);
 }
 
 .formWrapper {
-  margin-left: 220px;
   width: 100%;
+  max-width: 430px;
 }
 
 .formBox {
   background: #fff;
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(53, 7, 7, 0.08);
-  min-width: 350px;
-  max-width: 400px;
-  margin: 0 auto;
-   background: #005fa3;
-  border-radius: 10px;
-  size-adjust: 500px;
-  margin: 3rem;
-  padding: 2rem;
-  max-width: 100px;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0, 95, 163, 0.12);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,14 +24,59 @@
 
 .formBox h2 {
   text-align: center;
+  color: #0074D9;
+  margin-bottom: 1.5rem;
 }
+
 .formBox input,
 .formBox select {
-  width: 250px;      /* Choisis la largeur souhaitée */
+  width: 100%;
   margin-bottom: 1rem;
-  height: 38px;      /* Optionnel : même hauteur pour tous */
+  height: 38px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 1rem;
   box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.formBox button {
+  width: 100%;
+  height: 38px;
+  margin-bottom: 0.5rem;
+  background: #0074D9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.formBox button[type="reset"] {
+  background: #fff;
+  color: #0074D9;
+  border: 2px solid #0074D9;
+}
+
+.formBox button:hover {
+  background: #005fa3;
+  color: #fff;
+}
+
+.formBox button[type="reset"]:hover {
+  background: #e6f0fa;
+  color: #005fa3;
+}
+
+.formBox p {
+  width: 100%;
+  margin: 0;
+}
+
+.formBox .message {
+  margin-top: 1rem;
+  color: #0074D9;
+  text-align: center;
+  font-weight: bold;
 }

@@ -7,7 +7,6 @@ interface ReservationFormProps {
     onReservationCreated?: () => void;
 }
 
-
 function getCurrentHeureDepart() {
     const now = new Date();
     // Format ISO 8601 : yyyy-MM-ddTHH:mm:ss
@@ -19,6 +18,7 @@ function getCurrentHeureDepart() {
     const second = String(now.getSeconds()).padStart(2, '0');
     return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
 }
+
 const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated }) => {
     const [travelerName, setTravelerName] = useState('');
     const [destination, setDestination] = useState('');
@@ -27,6 +27,9 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
     const [classe, setClasse] = useState('');
     const [message, setMessage] = useState<string | null>(null);
 
+    const [showRecap, setShowRecap] = useState(false);
+    const [recapData, setRecapData] = useState<any>(null);
+
     const resetForm = () => {
         setTravelerName('');
         setDestination('');
@@ -34,6 +37,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
         setDepart('');
         setClasse('');
     };
+
     const cameroonCities = [
         'Yaoundé', 'Douala', 'Garoua', 'Bamenda', 'Maroua', 'Bafoussam',
         'Nkongsamba', 'Ebolowa', 'Bertoua', 'Ngaoundéré', 'Dschang',
@@ -49,14 +53,6 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
         e.preventDefault();
         setMessage(null);
         const heureDepart = getCurrentHeureDepart();
-        console.log({
-            travelerName,
-            destination,
-            agencyName,
-            depart,
-            heureDepart: getCurrentHeureDepart(),
-            classe,
-        });
         try {
             const response = await axios.post('http://localhost:8083/api/reservations', {
                 travelerName,
@@ -68,14 +64,22 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODg4MDkzNiwiZXhwIjoxNzQ4OTE2OTM2fQ.GpWjTCNZHbBS_lXQCxR_-gYRLXC_iCQUUTMFivam6V4Ir0zai-JXG_7Mg3M2YBaocLmIoi8OuUJWXWMzrDAJBLFvBcNWJXB9lTveb-v2xaR6B-wiFoaJbUDMY5K2ARUnrgAIl1HDUpMih5WdzYEn3JyuxFVwnt96uqLxFkZypwJoVvbWhxDQJza3XAhnGJikAmHjHlK6Fa1P_wR_Gpd34VUoX9kJlqpslh9ktw70x3B1z6vS97iYzb2pFKyeVuap8DhUK_jG-EeJenGq73Q0-GuCX38hfdpyTBgeNLshFVqhbjIpLF6wROnuDBpxXvE1IJ_UKYxMyUyqGRKwcrqGNg'
+                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODk4Mjk0OCwiZXhwIjoxNzQ5MDkwOTQ4fQ.X4kg4pcb_slhXxvmNQrv8PSfIUgmce3gaJMrMRnQimtpecWSWk0_bIlE5cTv8NdALnTP2VRHfxCE6XgEqGfuXOt0vooU3S_xq80VjqyzdYa20eMhb2oWfqJC7Iwit0yRkQv89fuKmKd244hKxjECNHEVKgCTWl9sLbK_nae5jvVe-n2zFh9obbN_nJUC84xF13C-zIEwmS6q1sPfdtrhChuXLfpJ9PRfBGBLvDmCaEFxy47hsloFyuw2Wa6LKHdJ9UEb_k_PY-frFIOA5alnUr9lcTHpHgSR-kvqKb2mPMMNlUaFXQbdt8Dn8hzmYjPvG7FpRjEOJgNLncE59IB6vA'
                 },
             });
             setMessage('Réservation créée avec succès !');
+            setRecapData({
+                travelerName,
+                agencyName,
+                destination,
+                depart,
+                heureDepart,
+                classe,
+            });
+            setShowRecap(true);
             resetForm();
             if (onReservationCreated) onReservationCreated();
         } catch (error: any) {
-            console.log(error);
             if (error.response) {
                 setMessage('Erreur : ' + (error.response.data?.message || 'Impossible de créer la réservation.'));
             } else {
@@ -90,6 +94,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
     };
 
     return (
+        <>
         <div className={styles.centerContainer}>
             <Dashbord />
             <div className={styles.formWrapper}>
@@ -122,7 +127,6 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
                     </p>
                     <p>
                         <div>
-
                             <select
                                 value={destination}
                                 onChange={e => setDestination(e.target.value)}
@@ -137,7 +141,6 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
                     </p>
                     <p>
                         <div>
-
                             <select
                                 value={depart}
                                 onChange={e => setDepart(e.target.value)}
@@ -163,12 +166,11 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
                     <p>
                         <div>
                             <select
-
                                 value={classe}
                                 onChange={e => setClasse(e.target.value)}
                                 required
                             >
-                                <option value="">CLASSIQUE</option>
+                                <option value="">Classe</option>
                                 <option value="VIP">VIP</option>
                                 <option value="CLASSIQUE">CLASSIQUE</option>
                             </select>
@@ -180,6 +182,27 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
                 </form>
             </div>
         </div>
+        {showRecap && recapData && (
+            <div style={{
+                position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+                background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3000
+            }}>
+                <div style={{ background: '#fff', padding: 32, borderRadius: 8, minWidth: 300 }}>
+                    <h3>Réservation créée avec succès !</h3>
+                    <ul>
+                        <li><b>Nom :</b> {recapData.travelerName}</li>
+                        <li><b>Agence :</b> {recapData.agencyName}</li>
+                        <li><b>Départ :</b> {recapData.depart}</li>
+                        <li><b>Destination :</b> {recapData.destination}</li>
+                        <li><b>Heure de départ :</b> {recapData.heureDepart}</li>
+                        <li><b>Classe :</b> {recapData.classe}</li>
+                    </ul>
+                    <button onClick={() => window.print()} style={{ marginRight: 16 }}>Imprimer</button>
+                    <button onClick={() => setShowRecap(false)}>Fermer</button>
+                </div>
+            </div>
+        )}
+        </>
     );
 };
 

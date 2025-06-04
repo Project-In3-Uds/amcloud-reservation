@@ -1,9 +1,14 @@
+import React from 'react';
 import Link from 'next/link';
 
-const Dashbord: React.FC = () => (
+interface DashbordProps {
+  onClose?: () => void;
+}
+
+const Dashbord: React.FC<DashbordProps> = ({ onClose }) => (
   <aside
     style={{
-      width: 220,
+      width: 150,
       minHeight: '100vh',
       background: '#0074D9',
       color: '#fff',
@@ -15,9 +20,26 @@ const Dashbord: React.FC = () => (
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
+      zIndex: 1000
     }}
   >
-    <h2 style={{ color: '#fff', marginBottom: 32 }}>Menu</h2>
+    {onClose && (
+      <button
+        onClick={onClose}
+        style={{
+          marginBottom: 24,
+          background: '#0074D9',
+          color: '#fff',
+          border: 'none',
+          borderRadius: 6,
+          padding: '8px 18px',
+          cursor: 'pointer',
+          fontWeight: 'bold'
+        }}
+      >
+        Menu
+      </button>
+    )}
     <Link href="/" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Accueil</Link>
     <Link href="/reservations" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Réservations</Link>
     <Link href="/reservationForm" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Créer réservation</Link>

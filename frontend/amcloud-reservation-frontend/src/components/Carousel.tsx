@@ -39,7 +39,7 @@ const Carousel: React.FC = () => {
       <div
         style={{
           width: '100%',
-          height: 250,
+          height: 350,
           maxWidth: '95vw',
           background: '#f8faff',
           borderRadius: 12,
