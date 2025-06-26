@@ -62,6 +62,7 @@ RESERVATION_DB_DRIVER_CLASS_NAME=org.postgresql.Driver
 JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
 SQL_INIT_MODE=always
 JPA_HIBERNATE_DDL_AUTO=update
+CONFIG_SERVER_URL=http://localhost:8888
 ```
 
 > ⚠️ **Never commit sensitive values (tokens, passwords) into the repository.**  
