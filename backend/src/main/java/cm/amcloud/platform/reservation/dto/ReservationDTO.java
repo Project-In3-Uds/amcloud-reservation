@@ -16,7 +16,7 @@ public class ReservationDTO {
     private String destination;
     private String agencyName;
     private String depart;
-  private LocalDateTime heureDepart;
+    private LocalDateTime heureDepart;
     private String classe;
     public ReservationDTO(String travelerName, String destination, String agencyName, String depart,LocalDateTime heureDepart, String classe) {
         this.travelerName = travelerName;
@@ -26,4 +26,5 @@ public class ReservationDTO {
         this.heureDepart=heureDepart;
         this.classe=classe;
     }
+    
 }

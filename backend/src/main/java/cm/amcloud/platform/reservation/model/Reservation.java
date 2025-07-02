@@ -24,3 +24,4 @@ public class Reservation {
     private LocalDateTime heureDepart;
     private String classe;
 }
+
