@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     <main style={{ flex: 1 }}>
                         <Component {...pageProps} />
                     </main>
-                    <Footer />
+                   
                 </div>
             </div>
         </div>

@@ -3,9 +3,9 @@ import React from 'react';
 
 interface HeaderProps {
   onMenuClick?: () => void;
+  idAgence?: string | number;
 }
-
-const Header: React.FC<HeaderProps> = ({ onMenuClick }) => (
+const Header: React.FC<HeaderProps> = ({ onMenuClick, idAgence }) => (
   <header
     style={{
       background: '#0074D9',
@@ -44,7 +44,12 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => (
     <Link href="/reservations" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Liste des réservations</Link>
     <Link href="/agencyList" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Liste des agences</Link>
     <Link href="/login" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Connexion</Link>
+    <Link href="/agence/agenceDashboard" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>agence</Link>
+    {idAgence && (
+      <Link href={`/agence/${idAgence}`} style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Trajets</Link>
+    )}
   </header>
 );
+
 
 export default Header;

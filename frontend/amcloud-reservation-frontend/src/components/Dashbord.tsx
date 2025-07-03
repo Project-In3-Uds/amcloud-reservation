@@ -40,11 +40,12 @@ const Dashbord: React.FC<DashbordProps> = ({ onClose }) => (
         Menu
       </button>
     )}
-    <Link href="/" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Accueil</Link>
-    <Link href="/reservations" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Réservations</Link>
-    <Link href="/reservationForm" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Créer réservation</Link>
-    <Link href="/agences" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Agences</Link>
+    <Link href="/" style={{ color: '#000000', textDecoration: 'bold', marginBottom: 16 }}></Link>
+    <Link href="/reservations" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}></Link>
+    <Link href="/reservationForm" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}></Link>
+    <Link href="/agences" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}></Link>
     <Link href="/login" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Connexion</Link>
+     <Link href="/" style={{ color: '#fff', textDecoration: 'none', marginBottom: 16 }}>Deconnexion</Link>
   </aside>
 );
 

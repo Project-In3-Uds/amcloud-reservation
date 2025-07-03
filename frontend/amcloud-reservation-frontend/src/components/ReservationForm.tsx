@@ -64,8 +64,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODk4Mjk0OCwiZXhwIjoxNzQ5MDkwOTQ4fQ.X4kg4pcb_slhXxvmNQrv8PSfIUgmce3gaJMrMRnQimtpecWSWk0_bIlE5cTv8NdALnTP2VRHfxCE6XgEqGfuXOt0vooU3S_xq80VjqyzdYa20eMhb2oWfqJC7Iwit0yRkQv89fuKmKd244hKxjECNHEVKgCTWl9sLbK_nae5jvVe-n2zFh9obbN_nJUC84xF13C-zIEwmS6q1sPfdtrhChuXLfpJ9PRfBGBLvDmCaEFxy47hsloFyuw2Wa6LKHdJ9UEb_k_PY-frFIOA5alnUr9lcTHpHgSR-kvqKb2mPMMNlUaFXQbdt8Dn8hzmYjPvG7FpRjEOJgNLncE59IB6vA'
-                },
+                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1MDgyMzI3OCwiZXhwIjoxNzUwOTMxMjc4fQ.hXxSRF_2tJ7Qg79jrCIZL8c9UHzc0cTs8CTvoqiYTMfhwDw6XG4MUKkYNhbMewOlZxxxJzWL9rZt-dr4_epAtgxWXRRn363sYafh-SuB-rdSFj-Wg_l6aj2SNba0LsAus7iVa7LTpcrjMBdbJ9Bqz2i_CaGLJCHqUyQk7Pq8GdbLkC1w8YAHcrjqFJxab9BiM6jjdRTDs3oSfpsfAWcS9q4Ezj1YSddUjcP_leSk8ssYov78CJXYleIhXccvMN4YU-APfqDy37SQWiXVo_kTh6ZgT3J-t4V8fpyKzu5ANHQ58EtXA0muLOy8l3ZkH2k2jA-sFo5dr_e9Q7MmwmLHwA'},
             });
             setMessage('Réservation créée avec succès !');
             setRecapData({
@@ -96,7 +95,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onReservationCreated 
     return (
         <>
         <div className={styles.centerContainer}>
-            <Dashbord />
+
             <div className={styles.formWrapper}>
                 <form onSubmit={handleSubmit} onReset={handleReset} className={styles.formBox}>
                     <h2>Créer une réservation</h2>

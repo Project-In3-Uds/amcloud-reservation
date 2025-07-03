@@ -1,0 +1,5 @@
+import axios from 'axios';
+import { Agency } from '../models/Agency';
+
+export const getAgencies = () => axios.get<Agency[]>('/api/agencies');
+export const getAgencyById = (id: number) => axios.get<Agency>(`/api/agencies/${id}`);

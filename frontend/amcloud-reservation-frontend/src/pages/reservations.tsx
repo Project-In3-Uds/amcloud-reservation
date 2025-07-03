@@ -24,7 +24,7 @@ const ReservationsPage: React.FC = () => {
             try {
                 const response = await axios.get('http://localhost:8083/api/reservations', {
                     headers: {
-                        'Authorization':'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODk4Mjk0OCwiZXhwIjoxNzQ5MDkwOTQ4fQ.X4kg4pcb_slhXxvmNQrv8PSfIUgmce3gaJMrMRnQimtpecWSWk0_bIlE5cTv8NdALnTP2VRHfxCE6XgEqGfuXOt0vooU3S_xq80VjqyzdYa20eMhb2oWfqJC7Iwit0yRkQv89fuKmKd244hKxjECNHEVKgCTWl9sLbK_nae5jvVe-n2zFh9obbN_nJUC84xF13C-zIEwmS6q1sPfdtrhChuXLfpJ9PRfBGBLvDmCaEFxy47hsloFyuw2Wa6LKHdJ9UEb_k_PY-frFIOA5alnUr9lcTHpHgSR-kvqKb2mPMMNlUaFXQbdt8Dn8hzmYjPvG7FpRjEOJgNLncE59IB6vA'}
+                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1MTAyMjAzOCwiZXhwIjoxNzUxMTMwMDM4fQ.R3mPtHYFgQVxXeYikinoFNVKuZyzbNx_Md7mz06JuYtDbdt5iz-5Az_XcWot5V8u5FZANj6XNHaqSAqd4D-juQL4BLbeUuRU4Lx9e3p_ZvlLvGprHzxGjWultBj2lqcdxXdWlBDlZCwfWCJlN-ilDRWtI56jzwHaCVn9OxJ1onsFUjqTrQkvbNvO59F-vfZsKEjuBm01k4Zitq89YJqZqieZNT0XvoOWeJi1KbzKrj7TBLAKAu_HUypp8wn5U2yNiGTWZNYKB6T4KtH9Al7nJFv247w8rTJu82vaC8t__pL5wBcK2KeLpOI7vrxm4Ec7FYqWXrNvaur0RSh94tn9ww'},
                     
                 });
                 setReservations(response.data);
@@ -39,7 +39,6 @@ const ReservationsPage: React.FC = () => {
 
     return (
         <div>
-            
             
             {loading ? <p>Chargement...</p> : <ReservationList reservations={reservations} />}
         </div>
