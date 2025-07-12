@@ -43,7 +43,7 @@ CREATE TABLE agence (
     logo_url VARCHAR(255),                -- URL du logo
     description TEXT,                     -- Description de l'agence
     ville VARCHAR(100),                   -- Ville
-    quartier VARCHAR(100)                 -- Quartier
+    localisation VARCHAR(100)                 -- Quartier
 );
 -- Table des trajets (itinéraires proposés par une agence)
 CREATE TABLE trajet (

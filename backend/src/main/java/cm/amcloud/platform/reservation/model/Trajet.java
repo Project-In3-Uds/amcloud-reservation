@@ -44,6 +44,36 @@ public class Trajet {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setHeureArrivee'");
     }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getVilleDepart() {
+        return villeDepart;
+    }
+    public String getVilleArrivee() {
+        return villeArrivee;
+    }
+    public Double getDistance() {
+        return distance;
+    }
+    public void setDistance(Double distance) {
+        this.distance = distance;
+    }
+    public Long getIdAgence() {
+        return idAgence;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public Double getPrix() {
+        return prix;
+    }
+    public void setPrix(Double prix) {
+        this.prix = prix;
+    }
 
     // getters/setters
 }

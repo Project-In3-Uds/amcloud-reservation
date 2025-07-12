@@ -30,13 +30,7 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2024.0.1</spring-cloud.version> <!-- Define the Spring Cloud BOM version -->
 	</properties>
-	<repositories>
-    <repository>
-      <id>github</id>
-      <name>GitHub Project-In3-Uds Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/Project-In3-Uds/amcloud-security-shared</url>
-    </repository>
-  </repositories>
+	 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -58,49 +52,41 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
+			<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<version>42.7.3</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
+  
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+
 		<!--lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
  			<scope>provided</scope>
-		</dependency>
-
-		<!--spring security-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-        
-	     
-
-		<!--Jwt-->
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>0.11.5</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-			<version>0.11.5</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId>
-			<version>0.11.5</version>
-			<scope>runtime</scope>
 		</dependency>
 
 		<!-- dotenv-java -->
@@ -116,13 +102,17 @@
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
         
-		<!-- amcloud Security Shared -->
+		<!--spring starter actuator-->
 		<dependency>
-		  <groupId>cm.amcloud.platform</groupId>
-		  <artifactId>amcloud-security-shared</artifactId>
-	      <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
+		<!-- mono -->
+	<dependency>
+		<groupId>io.projectreactor</groupId>
+		<artifactId>reactor-core</artifactId>
+	</dependency>
 	</dependencies>
 
 	<build>

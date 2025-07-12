@@ -1,15 +1,87 @@
 ### Créer une réservation
-POST http://localhost:8083/api/reservations
+POST http://localhost:8080/reservations/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODk4Mjk0OCwiZXhwIjoxNzQ5MDkwOTQ4fQ.X4kg4pcb_slhXxvmNQrv8PSfIUgmce3gaJMrMRnQimtpecWSWk0_bIlE5cTv8NdALnTP2VRHfxCE6XgEqGfuXOt0vooU3S_xq80VjqyzdYa20eMhb2oWfqJC7Iwit0yRkQv89fuKmKd244hKxjECNHEVKgCTWl9sLbK_nae5jvVe-n2zFh9obbN_nJUC84xF13C-zIEwmS6q1sPfdtrhChuXLfpJ9PRfBGBLvDmCaEFxy47hsloFyuw2Wa6LKHdJ9UEb_k_PY-frFIOA5alnUr9lcTHpHgSR-kvqKb2mPMMNlUaFXQbdt8Dn8hzmYjPvG7FpRjEOJgNLncE59IB6vA
+Authorization: Bearer eyJraWQiOiJteS1rZXktaWQiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInNjb3BlcyI6WyJyZWFkIiwid3JpdGUiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTIyMTAyODEsImV4cCI6MTc1MjIxMzg4MSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxIn0.kIG35qEpsA_LD7Nbtl2qRY78BVKqOOS7tUMZHkEQK-h1FlpPpqLyzvqwhnpoMEG_A8zxwMi_AhpdJc606OnlZEffOPZih_tC0wNTlPvO5lBHKWOF0CiON2RTjh5UMoaxerRpyjbqCsf686-0ssMZk3FhaBhasMMIyuHGU1EfJqSelyie60Y_JdeajHWCONpm9VjjddGDiMXckJlmgR_HL9I-3fEd48pVaEWyjaUIHKLJGkCr3Nv6mQkDLEgljLl254OgfGO8v6ow39i-IMlxI-DWJbkSnH36ZmmHziFFAobJHaI3KmLGl0PH1ajvlAzpFowqLaoTXxv1yc_fKbbadg  
+{
   "travelerName": "Charlie",
   "destination": "Tokyo",
   "agencyName": "AgenceGamma"
 }
 
 ### Lister toutes les réservations
-GET http://localhost:8083/api/reservations
+GET http://localhost:8083/api/reservations/list
 
 ### Appeler Reservation sécurisé
-GET http://localhost:8083/api/reservations
-Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODA4MjA3OCwiZXhwIjoxNzQ4MTE4MDc4fQ.t35nGPccDvZ6dAUZ3ZLdGAmTZtXiuyLVBrPiPQ45iHGbOVRLF1NdEhkxL0e6bdZBfXZ9V9BFkIjO_ojMema0ZDJgokBXKqCZDsmOWVvH1CJQ2TYu3j03FnROOqiG24f8YPfTcRTARHPHf4x3Qa4lJyOGvyL6N_cyr_NxVoBlsbpTTt-_ZONCv2ObCCUjeHz0XwNH10K6BLa7zrHpaOHjKn3_TCV_zAnX0E6pI4n5Ee59OaXQjpcOl_CgtcGL6iVu7AToQgTNvzZHFScz7ljpN8lre5KvELOIlh1RYUGvAkHKf75l4KVvZZBJwkYAPzpZyJCJoBe2O_8EATtN2xiYmw 
+GET http://localhost:8080/reservations/list
+Authorization: Bearer eyJraWQiOiJteS1rZXktaWQiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInNjb3BlcyI6WyJyZWFkIiwid3JpdGUiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTIyMTAyODEsImV4cCI6MTc1MjIxMzg4MSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxIn0.kIG35qEpsA_LD7Nbtl2qRY78BVKqOOS7tUMZHkEQK-h1FlpPpqLyzvqwhnpoMEG_A8zxwMi_AhpdJc606OnlZEffOPZih_tC0wNTlPvO5lBHKWOF0CiON2RTjh5UMoaxerRpyjbqCsf686-0ssMZk3FhaBhasMMIyuHGU1EfJqSelyie60Y_JdeajHWCONpm9VjjddGDiMXckJlmgR_HL9I-3fEd48pVaEWyjaUIHKLJGkCr3Nv6mQkDLEgljLl254OgfGO8v6ow39i-IMlxI-DWJbkSnH36ZmmHziFFAobJHaI3KmLGl0PH1ajvlAzpFowqLaoTXxv1yc_fKbbadg  
+
+#######
+POST http://localhost:8083/api/reservations/create
+Content-Type: application/json
+#Authorization: Bearer eyJraWQiOiJteS1rZXktaWQiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInNjb3BlcyI6WyJyZWFkIiwid3JpdGUiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTIxNDY0ODYsImV4cCI6MTc1MjE1MDA4NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxIn0.fkrn3DTrTBN4tkY4FCqNZNcmDq32jKG97-X6N_b7bOnW7ve38-vwYS7wRdsmC5JWJyTFJtX3cQINoVzHw8blGtv9gh6qFT2xQIjZm5grW0LjS4PrM9BiCXUa7c1r906x4siY2MBpGbJ4sulHL36_tpxYBlgqSpk2BHmae2Sbh4l8jGRqTjZP_4fBgrUbqkxvLoaf5LcrejXnhQ4DsCoZN_2m-EP6qw1LJwna_oF-unAwRB1eI0qGbNocmfNvPkPIFTz6IUI9Vi2pdD4aWCwxG-C_WRc1zj2lr_KrY9pyrh3C2qiIAtn2WDBVXR7JBRvO_O8UvazYGdULnp0qSod1hw
+
+{
+  "travelerName": "Charlie",
+  "destination": "Tokyo",
+  "agencyName": "AgenceGamma"
+}
+
+##
+GET http://localhost:8083/api/agences/id
+Authorization: Bearer eyJraWQiOiJteS1rZXktaWQiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInNjb3BlcyI6WyJyZWFkIiwid3JpdGUiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTIxNDY0ODYsImV4cCI6MTc1MjE1MDA4NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxIn0.fkrn3DTrTBN4tkY4FCqNZNcmDq32jKG97-X6N_b7bOnW7ve38-vwYS7wRdsmC5JWJyTFJtX3cQINoVzHw8blGtv9gh6qFT2xQIjZm5grW0LjS4PrM9BiCXUa7c1r906x4siY2MBpGbJ4sulHL36_tpxYBlgqSpk2BHmae2Sbh4l8jGRqTjZP_4fBgrUbqkxvLoaf5LcrejXnhQ4DsCoZN_2m-EP6qw1LJwna_oF-unAwRB1eI0qGbNocmfNvPkPIFTz6IUI9Vi2pdD4aWCwxG-C_WRc1zj2lr_KrY9pyrh3C2qiIAtn2WDBVXR7JBRvO_O8UvazYGdULnp0qSod1hw
+Content-Type: application/json
+{
+  "id": 1
+}
+### Lister les agences
+GET http://localhost:8083/api/agences
+Authorization: Bearer eyJraWQiOiJteS1rZXktaWQiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInNjb3BlcyI6WyJyZWFkIiwid3JpdGUiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTIxNDY0ODYsImV4cCI6MTc1MjE1MDA4NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxIn0.fkrn3DTrTBN4tkY4FCqNZNcmDq32jKG97-X6N_b7bOnW7ve38-vwYS7wRdsmC5JWJyTFJtX3cQINoVzHw8blGtv9gh6qFT2xQIjZm5grW0LjS4PrM9BiCXUa7c1r906x4siY2MBpGbJ4sulHL36_tpxYBlgqSpk2BHmae2Sbh4l8jGRqTjZP_4fBgrUbqkxvLoaf5LcrejXnhQ4DsCoZN_2m-EP6qw1LJwna_oF-unAwRB1eI0qGbNocmfNvPkPIFTz6IUI9Vi2pdD4aWCwxG-C_WRc1zj2lr_KrY9pyrh3C2qiIAtn2WDBVXR7JBRvO_O8UvazYGdULnp0qSod1hw
+[
+  {
+    "id": 1,
+    "name": "Agence Alpha",
+    "location": "Douala",
+    "themeColorPrimary": "#EF4444",
+    "themeColorSecondary": "#DC2626",
+    "agenceCode": "AGR-CM-2024-004",
+    "adresse": undefined
+  },
+  {
+    "id": 2,
+    "name": "Agence Beta",
+    "location": "Yaoundé",
+    "themeColorPrimary": "#22C55E",
+    "themeColorSecondary": "#16A34A",
+    "agenceCode": "AGR-CM-2024-001",
+    "adresse": undefined
+  },
+  {
+    "id": 3,
+    "name": "Agence Gamma",
+    "location": "Bamenda",
+    "themeColorPrimary": "#8B5CF6",
+    "themeColorSecondary": "#7C3AED",
+    "agenceCode": "AGR-CM-2024-005",
+    "adresse": undefined
+  }
+]
+
+### Personnaliser une agence
+GET http://localhost:8083/api/agences/id/customization
+Content-Type: application/json  
+Authorization: Bearer eyJraWQiOiJteS1rZXktaWQiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInNjb3BlcyI6WyJyZWFkIiwid3JpdGUiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTIxNDY0ODYsImV4cCI6MTc1MjE1MDA4NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxIn0.fkrn3DTrTBN4tkY4FCqNZNcmDq32jKG97-X6N_b7bOnW7ve38-vwYS7wRdsmC5JWJyTFJtX3cQINoVzHw8blGtv9gh6qFT2xQIjZm5grW0LjS4PrM9BiCXUa7c1r906x4siY2MBpGbJ4sulHL36_tpxYBlgqSpk2BHmae2Sbh4l8jGRqTjZP_4fBgrUbqkxvLoaf5LcrejXnhQ4DsCoZN_2m-EP6qw1LJwna_oF-unAwRB1eI0qGbNocmfNvPkPIFTz6IUI9Vi2pdD4aWCwxG-C_WRc1zj2lr_KrY9pyrh3C2qiIAtn2WDBVXR7JBRvO_O8UvazYGdULnp0qSod1hw
+
+{
+  "id": 1
+}
+{
+  "id": 1,
+  "name": "Agence Alpha",
+  "location": "Douala",
+  "themeColorPrimary": "#EF4444",
+  "themeColorSecondary": "#DC2626",
+  "agenceCode": "AGR-CM-2024-004",
+  "adresse": undefined
+}
+
+### Lister les réservations
